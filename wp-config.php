@@ -14,24 +14,7 @@
  * @package WordPress
  */
 
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define('DB_NAME', 'gregor');
 
-/** MySQL database username */
-define('DB_USER', 'gregor');
-
-/** MySQL database password */
-define('DB_PASSWORD', 'gr3g0r');
-
-/** MySQL hostname */
-define('DB_HOST', '127.0.0.1');
-
-/** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8');
-
-/** The Database Collate type. Don't change this if in doubt. */
-define('DB_COLLATE', '');
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -86,7 +69,13 @@ define('WP_DEBUG', false);
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
 
+$config = ABSPATH .str_replace(".","_",$_SERVER['SERVER_NAME']).".php";
+if (file_exists($config)) {
+  /** Sets up WordPress vars and included files. */
+  require_once($config);
+}
+
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-define('WP_HOME','http://gregor.local');
-define('WP_SITEURL','http://gregor.local');
+
+
